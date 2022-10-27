@@ -6,20 +6,18 @@ CC = cc
  
 HEADERS = -I=get_next_line.h
 
-FLAGS = -Wall -Werror -Wextra $(HEADERS)
+
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address $(HEADERS) -D BUFFER_SIZE=42
 
 NAME = get_next_line
 
 %.o : %.c
-	$(CC) $(FLAGS) -c -o $@ $^
+	$(CC) $(CFLAGS) -c $^  -o $@
 
 all : $(NAME)
 
-libft.a : 
-	cd libft ; make ; make clean
-
 $(NAME) : libft.a $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) libft/libft.a
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean :
 	rm -f $(OBJS)
