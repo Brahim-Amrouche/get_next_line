@@ -134,23 +134,26 @@ char *get_next_line(int fd)
 {
     static file_t read_file;
 	ssize_t nl_index;
-
-    read_file.line = ft_calloc(1,sizeof(char));
-    if (!read_file.buffer)
-    {   
-        read_file.buffer = ft_calloc(BUFFER_SIZE + 1 ,sizeof(char));
-        if (!read_file.buffer)
-            return NULL;
-    }
+	if (!read_file.line)
+		read_file.line = ft_calloc(1,sizeof(char));
+    read_file.buffer = ft_calloc(BUFFER_SIZE + 1 ,sizeof(char));
+	if (!read_file.line || ! read_file.buffer)
+		return NULL;
 	read_file.bytes_read = read(fd,read_file.buffer,BUFFER_SIZE);
     while ( read_file.bytes_read >= 0 || read_file.line)
     {
         read_file.line = ft_strjoin(read_file.line ,read_file.buffer);
         nl_index = ft_strchr_index(read_file.line,'\n');
         if ( nl_index >= 0)
+		{
+			free(read_file.buffer);
 			return ft_cut_line(read_file.line,nl_index + 1);
+		}
 		else if ( read_file.bytes_read < BUFFER_SIZE)
+		{
+			free(read_file.buffer);
             return read_file.line;
+		}
 		read_file.bytes_read = read(fd,read_file.buffer,BUFFER_SIZE);
     }
     return NULL;
