@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:29:33 by bamrouch          #+#    #+#             */
-/*   Updated: 2022/10/28 01:16:05 by bamrouch         ###   ########.fr       */
+/*   Updated: 2022/10/28 03:03:52 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (src_len + dst_len);
 }
 
-ssize_t	ft_strchr_index(const char *s, int c)
+ssize_t	ft_strchr_index(char *s, int c)
 {
 	char	*temp;
 	ssize_t	i;
 
+	if (!s)
+		return (-1);
 	temp = (char *)s;
 	i = 0;
 	while (*(temp + i))

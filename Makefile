@@ -7,7 +7,7 @@ CC = cc
 HEADERS = -I=get_next_line.h
 
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address $(HEADERS) -D BUFFER_SIZE=100
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address $(HEADERS) -D BUFFER_SIZE=2
 
 NAME = get_next_line
 
