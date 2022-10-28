@@ -7,12 +7,12 @@ CC = cc
 HEADERS = -I=get_next_line.h
 
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address $(HEADERS) -D BUFFER_SIZE=42
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address $(HEADERS) -D BUFFER_SIZE=100
 
 NAME = get_next_line
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $^  -o $@
+	$(CC) $(CFLAGS) -c $?  -o $@
 
 all : $(NAME)
 
