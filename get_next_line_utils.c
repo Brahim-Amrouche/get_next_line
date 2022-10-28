@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:29:33 by bamrouch          #+#    #+#             */
-/*   Updated: 2022/10/28 21:53:47 by bamrouch         ###   ########.fr       */
+/*   Updated: 2022/10/28 23:39:00 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (res);
 }
 
-size_t	ft_strlcat(char *dst,char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	src_len;

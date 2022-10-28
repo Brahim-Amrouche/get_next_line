@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:23:00 by bamrouch          #+#    #+#             */
-/*   Updated: 2022/10/28 21:49:09 by bamrouch         ###   ########.fr       */
+/*   Updated: 2022/10/28 23:53:43 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,21 @@ char	*get_next_line_helper(int fd, char *buffer, char **line)
 	return (NULL);
 }
 
+void	ft_init_vars(char **line, char **buffer)
+{
+	if (!(*line))
+		*line = ft_calloc(1, sizeof(char));
+	if (!(*line))
+		return ;
+	*buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!(*buffer))
+	{
+		free(*line);
+		*line = NULL;
+		return ;
+	}
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*line;
@@ -89,17 +104,9 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > 10240 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!line)
-		line = ft_calloc(1, sizeof(char));
-	if (!line)
+	ft_init_vars(&line, &buffer);
+	if (!line || !buffer)
 		return (NULL);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buffer)
-	{
-		if (line)
-			free(line);
-		return (NULL);
-	}
 	res = get_next_line_helper(fd, buffer, &line);
 	free(buffer);
 	if (ft_strchr_index(res, '\n') == -1)
