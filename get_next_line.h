@@ -6,7 +6,7 @@
 /*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:24:48 by bamrouch          #+#    #+#             */
-/*   Updated: 2022/10/28 03:14:59 by bamrouch         ###   ########.fr       */
+/*   Updated: 2022/10/28 21:53:32 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 0
 # endif
-# if BUFFER_SIZE <= 0
-#  undef BUFFER_SIZE
-#  define BUFFER_SIZE 0
-# endif
 
-size_t	ft_strlen(const char *s);
+size_t	ft_strlen(char *s);
 void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst,char *src, size_t dstsize);
 ssize_t	ft_strchr_index(char *s, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*get_next_line(int fd);
 
 #endif
