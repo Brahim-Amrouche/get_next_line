@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bamrouch <bamrouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 00:23:00 by bamrouch          #+#    #+#             */
-/*   Updated: 2022/10/30 01:01:27 by bamrouch         ###   ########.fr       */
+/*   Created: 2022/10/30 01:12:23 by bamrouch          #+#    #+#             */
+/*   Updated: 2022/10/30 02:37:12 by bamrouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin_buffer_to_line(char **line, char *buffer)
 {
@@ -98,19 +98,19 @@ void	ft_init_vars(char **line, char **buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*line[10241];
 	char		*buffer;
 	char		*res;
 
 	if (fd < 0 || fd > 10240 || BUFFER_SIZE <= 0)
 		return (NULL);
-	ft_init_vars(&line, &buffer);
-	if (!line || !buffer)
+	ft_init_vars(&line[fd], &buffer);
+	if (!line[fd] || !buffer)
 		return (NULL);
-	res = get_next_line_helper(fd, buffer, &line);
+	res = get_next_line_helper(fd, buffer, &line[fd]);
 	free(buffer);
 	if (ft_strchr_index(res, '\n') == -1)
-		line = NULL;
+		line[fd] = NULL;
 	if (!res || ft_strlen(res) == 0)
 	{
 		if (res)
